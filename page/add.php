@@ -8,6 +8,7 @@
 	$sstatuss ="";
 	$snum 	="";
 
+
 	require'connect.php';
 
 	if (isset($_POST['addbtns'])) {

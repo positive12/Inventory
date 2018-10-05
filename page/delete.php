@@ -6,8 +6,7 @@
       $delete = ("DELETE FROM server where s_id = '$id'");
       mysqli_query($db, $delete);
       
-      
-      header ('Location:/item.php');
+      header ('Location:/inventory/item.php');
     }
 
 ?>
