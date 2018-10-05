@@ -141,7 +141,7 @@
         
         
         
-        <!--============================= MODAL BUTTONS   =========================================================================== -->
+        <!--============================= MODAL BUTTONS        =========================================================================== -->
         <div>
             <a class="btn btn-success" href="#" data-toggle="modal" data-target="#logoutModals">Add server</a>
             <a class="btn btn-success" href="#" data-toggle="modal" data-target="#addnet">Add Netwotk Cabinet </a>
