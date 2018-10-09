@@ -191,7 +191,9 @@
                            echo "<td> ".$row['s_username']." </td>";
                            echo "<td> ".$row['s_password']." </td>";
                            echo "<td> ".$row['s_status']." </td>";
-                           echo '<td><div align="center">'.'<a rel="facebox" href=authoredit.php?id=' . $row["s_id"] .' ><img  src="image/edit.png" width="25" ></a>'.'   '.'<a onclick="return confirmDelete(this);"  href=page/delete.php?id=' . $row["s_id"] .' ><img src="image/delete.png" width="25" ></a>'.' </div></td>';
+                           echo '<td><div align="center">'.'<a rel="facebox" href=authoredit.php?id=' . $row["s_id"] .' ><img  src="image/edit.png" width="25" ></a>'.' 
+                             '.'<a onclick="return confirmDelete(this);"  href=page/delete.php?id=' . $row["s_id"] .' ><img src="image/delete.png" width="25" ></a>'.'
+                             '.'<a onclick="return confirmDelete(this);"  href=page/delete.php?id=' . $row["s_id"] .' ><img src="image/detail.png" width="25" ></a>'.' </div></td>';
                         echo "</tr>";
                       }
                   ?>
