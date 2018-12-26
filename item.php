@@ -178,25 +178,26 @@
                 </tfoot>
                 <tbody>
                   
-                  
                  <?php
                       require'page/connect.php';
 
                     $show = ("SELECT * From server ORDER BY s_name");
                     $shows= mysqli_query ($db, $show);
-                      while ($row = mysqli_fetch_assoc($shows)){
-                        echo "<tr>";
-                           echo "<td> ".$row['s_name']." </td>";
-                           echo "<td> ".$row['s_ipadd']." </td>";
-                           echo "<td> ".$row['s_username']." </td>";
-                           echo "<td> ".$row['s_password']." </td>";
-                           echo "<td> ".$row['s_status']." </td>";
-                           echo '<td><div align="center">'.'<a rel="facebox" href=authoredit.php?id=' . $row["s_id"] .' ><img  src="image/edit.png" width="25" ></a>'.' 
-                             '.'<a onclick="return confirmDelete(this);"  href=page/delete.php?id=' . $row["s_id"] .' ><img src="image/delete.png" width="25" ></a>'.'
-                             '.'<a onclick="return confirmDelete(this);"  href=page/delete.php?id=' . $row["s_id"] .' ><img src="image/detail.png" width="25" ></a>'.' </div></td>';
-                        echo "</tr>";
-                      }
-                  ?>
+                    while ($row = mysqli_fetch_assoc($shows)){?>
+                        <tr id="<?php echo $row['id']; ?>">
+                          <td data-target="s_name"><?php echo $row['s_name']; ?></td>
+                          <td data-target="s_ipadd"><?php echo $row['s_ipadd']; ?></td>
+                          <td data-target="s_username"><?php echo $row['s_username']; ?></td>
+                          <td data-target="s_password"><?php echo $row['s_password']; ?></td>
+                          <td data-target="s_status"><?php echo $row['s_status']; ?></td>
+                          <td>
+                              <a href="#" data-role="update" data-id="<?php echo $row['id'] ;?>"><img  src="image/edit.png" width="25" ></a>
+                              <a onclick="return confirmDelete(this);"  href=page/delete.php?id=<?php echo $row['id']; ?>><img src="image/delete.png" width="25" ></a>
+                              <a href=page/delete.php?id=<?php echo $row["id"] ?> ><img src="image/detail.png" width="25" ></a>
+                          </td>
+                        </tr>
+                   <?php }
+                 ?>
                 </tbody>
               </table>
             </div>
@@ -230,121 +231,199 @@
 
 
 
+<!--============================= Modal Area =====================================================-->
+<!--                                                                                              -->
+<!--                                                                                              -->
+<!--              M0DAL AREA               M0DAL AREA         M0DAL AREA                          -->
+<!--                                                                                              -->
+<!--                                                                                              -->
+<!-- --===========================  modal Area ===================================================-->
 
-  <!--==============================  Add Server Modal  ===========================================================================================================0-->
-
-  <div class="modal fade" id="logoutModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<!-- ---------------------------------       edit        -------------------------------------- -->
+  <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add New Server</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Edit Details for Network</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
         </div>
-        <div class="modal-body">
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-lg-12">
-                
-                <?php include"page/add.php"?>
-                
-                <form action="item.php" method="post">
-                  <div class="form-group">
-                    <input type="text" name="sitem" class="form-control" placeholder="Server Name" required>
+          <div class="modal-body">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-12">
+<!--                   <?php /*include"page/edit.php"*/?> -->
+ <!--                  <?php /*include"page/error.php" */ ?>  -->
+                  <form action="item.php" method="post">
+                    <div class="row">
+                     <div class="col">
+                      <input type="text" id="s_name" class="form-control">
+                      </div>
+                      <div class="col">
+                        <input type="text" id="s_ipadd" class="form-control"  required pattern="((^|\.)((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]?\d))){4}$" >
+                      </div>
+                  </div>
+                    </br>
+                  <div class="row">
+                     <div class="col">
+                      <input type="text" id="s_username" class="form-control">
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" id= "s_password">
+                      </div>
+                  </div>
+                    </br>
+                  <div class="row">
 
-                  </div>
-                  <div class="form-group">
-                    <input type="text" name="sip" id="ip"  class="form-control"  placeholder="Ip Address" required pattern="((^|\.)((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]?\d))){4}$" >
-                  </div>
-                  <div class="form-group">
-                    <input type="text" name="susername" value="" class="form-control" placeholder="Username" required>
-                  </div>
-
-                  <div class="form-group">
-                    <input type="text" name="spassword" class="form-control" placeholder="Password" required>
-                  </div>
-
-                  <div class="form-group">
-                    <input type="text" name="pin" class="form-control" placeholder="PinCode" required>
-                  </div>
-
-                  <div class="form-group">
-                     <select name="sstatuss" class="form-control form-control1" required>
-                             <option selected="true" disabled="disabled"><p>Choose Category</p></option>
-                            <option name="Active" value="Active">Active</option>
-                            <option name="Deactivated" value="Deactivated">Deactivated</option>
+                      <div class="col">
+                          <select name="sstatuss" id="s_status" class="form-control form-control1" required>
+                              <option selected="true" disabled="disabled"><p>Choose Category</p></option>
+                              <option name="Active" value="Active">Active</option>
+                              <option name="Deactivated" value="Deactivated">Deactivated</option>
                           </select>
+                      </div>
+                  </div>
+                  <div class="row">
+                        <input type="hidden" id="userId" class="form-control">
                   </div>
 
-                  <div class="form-group">
-                     <select name="rack" class="form-control form-control1" required>
-                            <option selected="true" disabled="disabled"><p>Choose Rack</p></option>
-                            <option value="Rack 1">Rack 1</option>
-                            <option value="Rack 2">Rack 2</option>
-                            <option value="Rack 3">Rack 3</option>
-                            <option value="Rack 4">Rack 4</option>
-                            <option value="Rack 5">Rack 5</option>
-                            <option value="Rack 6">Rack 6</option>
-                            <option value="Rack 7">Rack 7</option>
-                            <option value="Rack 8">Rack 8</option>
-                            <option value="Rack 9">Rack 9</option>
-                            <option value="Rack 10">Rack 10</option>
-                            <option value="Rack 11">Rack 11</option>
-                            <option value="Rack 12">Rack 12</option>
-                            <option value="Rack 13">Rack 13</option>
-                          </select>
-                  </div>
-                  
-                  <div class="form-group">
-                   
-                    <select name="snum" class="form-control form-control1" required>
-                            <option value="" selected="true" disabled="disabled"><p>Choose Server</p></option>
-                            <?php
-                              include('page/connect.php');
-                                $server = ("SELECT * FROM servers");
-                                 $servers = mysqli_query($db, $server);
-                                  $checking = mysqli_num_rows ($servers);
-                                  
-                                 if($checking > 0){
-                                      while($rows = mysqli_fetch_assoc($servers)){
-                                      echo '<option value="'.$rows['server'].'">'.$rows['server'].'</option>';
-                                  }}else{
-                                    echo'<option value="">Add server First</option>'; 
-                                 }
-                            
-                             ?>
-                          </select>
-                  </div>
-                  
-                  
-                  <div class="form-group">
-                    <select name="scategory" class="form-control form-control1" required>
-                             <option value="" selected="true" disabled="disabled"><p>Choose Category</p></option>
-                            <option name="RDCC" value="RDCC">RDCC</option>
-                            <option name="LiteCloud" value="LiteCloudloud">LiteCloud</option>
-                            <option name="Equicredit" value="Equicredit">Equicredit</option>
-                          </select>
-                  </div>
-                  <div class="form-group">
-                  </div>
+
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <input type="submit" name="add" class= "btn btn-secondary" value="Add IP "></input>
-          <a href= "item.php"><button class="btn btn-secondary" type="button">Cancel</button></a>
-          <input type="submit" name="addbtns" class="btn btn-secondary" value="ADD Server"></input>
-
-          </form>
-        </div>
+          <div class="modal-footer">
+            <a href="#" id="save" class="btn btn-primary pull-right">Update</a>
+            <a class="btn btn-primary" href="item.php">Cancel</a>
+          </div>
+        </form> 
       </div>
     </div>
   </div>
 
 
-<!-- ===================================== Add Network modal ================================================================ -->
+  <!--==============================  Add Server Modal  =========================================================================================0-->
+
+
+
+   <div class="modal fade bd-example-modal-lg" id="logoutModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Network Cabinet</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+        </div>
+          <div class="modal-body">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  
+                <?php include"page/add.php"?>
+                
+                  <form action="item.php" method="post">
+                    
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" name="sitem" class="form-control" placeholder="Server Name" required>
+                      </div>
+
+                      <div class="col">
+                        <input type="text" name="sip" id="ip"  class="form-control"  placeholder="Ip Address" required pattern="((^|\.)((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]?\d))){4}$" >
+                      </div>
+                    </div><br>
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" name="susername" value="" class="form-control" placeholder="Username" required>
+                      </div>
+
+                      <div class="col">
+                        <input type="text" name="spassword" class="form-control" placeholder="Password" required>
+                      </div>
+                    </div>
+                    </br>
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" name="pin" class="form-control" placeholder="PinCode" required>
+                      </div>
+
+                      <div class="col">
+                         <select name="sstatuss" class="form-control form-control1" required>
+                                 <option selected="true" disabled="disabled"><p>Choose Category</p></option>
+                                <option name="Active" value="Active">Active</option>
+                                <option name="Deactivated" value="Deactivated">Deactivated</option>
+                              </select>
+                      </div>
+                    </div></br>
+                    <div class="row">
+                      <div class="col">
+                         <select name="rack" class="form-control form-control1" required>
+                                <option selected="true" disabled="disabled"><p>Choose Rack</p></option>
+                                <option value="Rack 1">Rack 1</option>
+                                <option value="Rack 2">Rack 2</option>
+                                <option value="Rack 3">Rack 3</option>
+                                <option value="Rack 4">Rack 4</option>
+                                <option value="Rack 5">Rack 5</option>
+                                <option value="Rack 6">Rack 6</option>
+                                <option value="Rack 7">Rack 7</option>
+                                <option value="Rack 8">Rack 8</option>
+                                <option value="Rack 9">Rack 9</option>
+                                <option value="Rack 10">Rack 10</option>
+                                <option value="Rack 11">Rack 11</option>
+                                <option value="Rack 12">Rack 12</option>
+                                <option value="Rack 13">Rack 13</option>
+                                
+                              </select>
+                      </div>
+                      
+                      <div class="col">
+                       
+                        <select name="snum" class="form-control form-control1" required>
+                                <option value="" selected="true" disabled="disabled"><p>Choose Server</p></option>
+                                <?php
+                                  include('page/connect.php');
+                                    $server = ("SELECT * FROM servers");
+                                     $servers = mysqli_query($db, $server);
+                                      $checking = mysqli_num_rows ($servers);
+                                      
+                                     if($checking > 0){
+                                          while($rows = mysqli_fetch_assoc($servers)){
+                                          echo '<option value="'.$rows['server'].'">'.$rows['server'].'</option>';
+                                      }}else{
+                                        echo'<option value="">Add server First</option>'; 
+                                     }
+                                
+                                 ?>
+                              </select>
+                      </div>
+                    </div>
+                    </br>
+                    <div class="row">
+                      <div class="col">
+                        <select name="scategory" class="form-control form-control1" required>
+                                 <option value="" selected="true" disabled="disabled"><p>Choose Category</p></option>
+                                <option name="RDCC" value="RDCC">RDCC</option>
+                                <option name="LiteCloud" value="LiteCloudloud">LiteCloud</option>
+                                <option name="Equicredit" value="Equicredit">Equicredit</option>
+                              </select>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+                <div class="modal-footer">
+                  <a href= "item.php"><button class="btn btn-secondary" type="button">Cancel</button></a>
+                  <input type="submit" name="addbtns" class="btn btn-secondary" value="ADD Server"></input>
+                </div>
+              </form> 
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================    ============ Add Network modal ================================================================ -->
 
   <div class="modal fade" id="addnet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -373,7 +452,7 @@
         </div>
           <div class="modal-footer">
             <input type="submit" name="addnets" class="btn btn-primary"/>
-            <a class="btn btn-primary" href="item.php">Logout</a>
+            <a class="btn btn-primary" href="item.php">Cancel</a>
           </div>
         </form> 
       </div>
@@ -439,6 +518,60 @@
          return false;
       }
   </script>
+
+
+
+ <script>
+  $(document).ready(function(){
+
+    //  append values in input fields
+      $(document).on('click','a[data-role=update]',function(){
+            var id  = $(this).data('id');
+            var s_name  = $('#'+id).children('td[data-target=s_name]').text();
+            var s_username  = $('#'+id).children('td[data-target=s_username]').text();
+            var s_ipadd  = $('#'+id).children('td[data-target=s_ipadd]').text();
+            var s_password  = $('#'+id).children('td[data-target=s_password]').text();
+            var s_status  = $('#'+id).children('td[data-target=s_status]').text();
+
+            $('#s_name').val(s_name);
+            $('#s_username').val(s_username);
+            $('#s_ipadd').val(s_ipadd);
+            $('#s_password').val(s_password);
+            $('#s_status').val(s_status);
+            $('#userId').val(id);
+            $('#myModal').modal('toggle');
+      });
+
+      // now create event to get data from fields and update in database 
+
+       $('#save').click(function(){
+          var id  = $('#userId').val(); 
+          var s_name =  $('#s_name').val();
+          var s_username =  $('#s_username').val();
+          var s_ipadd =   $('#s_ipadd').val();
+          var s_password =   $('#s_password').val();
+          var s_status =   $('#s_status').val();
+
+          $.ajax({
+              url      : 'page/edit.php',
+              method   : 'post', 
+              data     : {s_name : s_name , s_username: s_username , s_ipadd : s_ipadd , s_password : s_password , s_status : s_status , id: id},
+              success  : function(response){
+                            // now update user record in table 
+                             $('#'+id).children('td[data-target=s_name]').text(s_name);
+                             $('#'+id).children('td[data-target=s_username]').text(s_username);
+                             $('#'+id).children('td[data-target=s_ipadd]').text(s_ipadd);
+                             $('#'+id).children('td[data-target=s_password]').text(s_password);
+                             $('#'+id).children('td[data-target=s_status]').text(s_status);
+                             $('#myModal').modal('toggle'); 
+
+                         }
+          });
+       });
+  });
+</script>
+
+
 
 
 </body>
