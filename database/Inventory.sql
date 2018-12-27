@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 27, 2018 at 02:14 AM
+-- Generation Time: Dec 27, 2018 at 02:26 AM
 -- Server version: 5.7.24-0ubuntu0.18.04.1
 -- PHP Version: 7.2.10-0ubuntu0.18.04.1
 
@@ -84,21 +84,20 @@ CREATE TABLE `servers` (
 --
 
 INSERT INTO `servers` (`id`, `server`, `date`) VALUES
-(5, 'Server 1', '2018-10-06 06:33:27'),
-(6, 'Server 2', '2018-10-06 06:33:37'),
-(7, 'Server 3', '2018-10-06 06:33:46'),
-(8, 'Server 4', '2018-10-06 06:33:58'),
-(9, 'Server 5', '2018-10-06 06:34:07'),
-(10, 'Server 6', '2018-10-06 06:34:24'),
-(11, 'Server 7', '2018-10-06 06:34:31'),
-(12, 'Server 8', '2018-10-06 06:34:41'),
-(13, 'Server 9', '2018-10-06 06:34:49'),
-(14, 'Server 10', '2018-10-06 06:34:58'),
-(15, 'Server 14', '2018-10-06 06:35:25'),
-(16, 'Server  15', '2018-10-06 06:35:44'),
-(18, 'dsdsd', '2018-10-12 10:51:12'),
-(19, 'Server 21', '2018-10-13 08:21:05'),
-(20, '', '2018-10-20 18:46:55');
+(1, 'Server 1', '2018-12-27 10:22:30'),
+(2, 'Server 2', '2018-12-27 10:22:49'),
+(3, 'Server 3', '2018-12-27 10:23:58'),
+(4, 'Server 4', '2018-12-27 10:24:06'),
+(5, 'Server 5', '2018-12-27 10:24:16'),
+(6, 'Server 6', '2018-12-27 10:24:25'),
+(7, 'Server 7', '2018-12-27 10:24:33'),
+(8, 'Server 8', '2018-12-27 10:24:42'),
+(9, 'Server 9', '2018-12-27 10:24:50'),
+(10, 'Server 10', '2018-12-27 10:24:59'),
+(11, 'Server 11', '2018-12-27 10:25:09'),
+(12, 'Server 12', '2018-12-27 10:25:15'),
+(13, 'Server 13', '2018-12-27 10:25:24'),
+(14, 'Server 14', '2018-12-27 10:25:33');
 
 -- --------------------------------------------------------
 
@@ -175,7 +174,7 @@ ALTER TABLE `server`
 -- AUTO_INCREMENT for table `servers`
 --
 ALTER TABLE `servers`
-  MODIFY `id` int(23) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(23) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `users`
 --
